@@ -10,4 +10,5 @@ ADD . /build_zone
 WORKDIR /build_zone
 RUN R -e 'remotes::install_local(upgrade="never")'
 RUN rm -rf /build_zone
-CMD R -e "shinyrender::run_app()"
+EXPOSE 8080
+CMD R -e "options('shiny.port'=8080,shiny.host='0.0.0.0');shinyrender::run_app()"
